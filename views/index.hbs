@@ -1,0 +1,22 @@
+{{!-- <form method="GET" action="/feed">
+	<input type="text" name="search" placeholder="username" />
+	<button type="submit">Search</button>
+</form>
+ --}}
+
+<nav>
+	<div class="content">		
+		<img src="{{profile_picture}}">
+		<p>@{{username}}</p>
+  </div>
+	 
+  <a href="/?action=logout">Se déconnecter</a>
+</nav>
+<h1>Vos tweets</h1>
+{{#each tweets}}
+<div class="tweet">
+  <p>{{text}}</p>
+  <span>{{created_at}}</span>
+  <a href="#" class="manage">manage</a>
+</div>
+{{/each}}
