@@ -230,3 +230,7 @@ a i.fa {
   font-size: 20px;
   color: #FFF;
 }
+
+.error {
+  color: #e74c3c;
+}

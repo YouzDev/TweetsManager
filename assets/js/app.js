@@ -1,52 +1,8 @@
-$(document).ready(function() {
-	var id
-	var textValue
-	
-	$('.edit').click(function (e) {
-		e.preventDefault();
-		
-		// id = $(this).parent().html().split('id="')[1].split('"')[0]
-		// var elementAtId = $('#' + id)
-		// textValue = elementAtId.html()
-		
-		// elementAtId.after('<textarea type="text" class="edit">' + textValue + '</textarea>')
-		// elementAtId.remove()
-		
-		// $(this).after('<a href="#" class="save"><i class="fa fa-check"></i></a>')
-		// $(this).remove()
+/* globals $, document */
 
-		// $('.delete').after('<a href="#" class="cancel"><i class="fa fa-times"></i></a>')
-		// $('.delete').remove()
-
-		// $('.save').click(function (e) {
-		// 	e.preventDefault();
-
-		// 	if ($('.edit').length <= 140) {			
-		// 		$.ajax({
-		// 			url: '/edit',
-		// 			type: 'POST',
-		// 			data: {status: $('.edit').val()},
-		// 		})
-		// 		.done(function() {
-					
-		// 		})
-		// 	} else {
-		// 		console.log("must be < 140");
-		// 	}
-		// });
-
-		// $('.cancel').click(function (e) {
-		// 	e.preventDefault()
-
-		// 	if ($('.edit').val() != "") {			
-		// 		$('.edit').before('<p class="text" id="#' + id + '">' + $('.edit').val() + '</p>');
-		// 		$('.edit').remove()
-		// 	}
-		// });
-	})
-
+$(document).ready(function () {
 	$('.delete').click(function (e) {
-		e.preventDefault();
+		e.preventDefault()
 		$('.ask').show()
 
 		$('.no').click(function (e) {
@@ -63,18 +19,18 @@ $(document).ready(function() {
 				data: {id: $('.delete').parent().html().split('id="')[1].split('"')[0]},
 			})
 			$('.delete').parent().remove()
-		});
+		})
 	})
 
 	$('#link').click(function (e) {
-		e.preventDefault();
+		e.preventDefault()
 		$('.new').show()
-	});
+	})
 
 	$('.newTweet-cancel').click(function (e) {
-		e.preventDefault();
+		e.preventDefault()
 		$('.new').hide()
-	});
+	})
 
 	$('.newTweet').submit(function (e) {
 		e.preventDefault()
@@ -87,7 +43,7 @@ $(document).ready(function() {
 			$('.new').hide()
 			window.location = '/'
 		} else {
-			console.log("must be < 140");
-		}
-	});
-});
+      $('.tweet-button').before('<p class="error">The tweet must be < of 140 characters</>');
+    }
+  })
+})
