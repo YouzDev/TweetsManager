@@ -1,5 +1,6 @@
 var rp = require('request-promise')
 var Twitter = require("twitter")
+var bodyParser = require('body-parser')
 var express = require('express')
 var session = require('express-session')
 var hbs = require('hbs')
@@ -41,6 +42,8 @@ hbs.registerHelper('assets', (process.env.NODE_ENV === 'production' ? _.memoize 
 
 app.use('/assets/', express.static(path.join(__dirname, '/assets')))
 app.use(session(sess))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'hbs')
 
@@ -79,7 +82,6 @@ app.get('/oauth/authorize', function (req, res) {
         } else {
           req.session.userId = data["id"]
           req.session.username = data["screen_name"]
-          req.session.username = data["screen_name"]
           req.session.name = data["name"]
           req.session.profilePic = data["profile_image_url"].split('_normal')[0] + '.png'
         }
@@ -91,23 +93,52 @@ app.get('/oauth/authorize', function (req, res) {
 })
 
 app.get('/', function (req, res) {
-  if (req.session.userId) {
+  if (req.session.username) {
     twitter.get('statuses/user_timeline', function (error, data){
-        if(error) {
-          console.log(error)
-        } else {
-          tweets = data
-        }
+      if(error) {
+        console.log(error)
+      } else {
+        tweets = data
+      }
       res.render('index', {username: req.session.username, profile_picture: req.session.profilePic, tweets: tweets})
     })
-
-    if (req.query.action === "logout") {
-      req.session = null;
-      res.render('/')
-    }
   } else {
-    res.send('<a href="/oauth/request_token">Se connecter</a>')
+    res.render('signin')
   }
+})
+
+app.get('/logout', function (req, res) {
+  req.session.userId = null;
+  req.session.username = null;
+  req.session.name = null;
+  req.session.profilePic = null;
+  res.redirect('/')
+})
+
+app.post('/tweet', function (req, res) {
+  twitter.post('statuses/update', {status: req.body.status}, function (error, data) {
+    if(error) {
+      console.log(error)
+    } else {
+      tweets = data
+    }
+  })
+})
+
+// app.post('/edit', function (req, res) {
+//   twitter.post('statuses/update', {status: req.body.status}, function (error, data) {
+//     if(error) {
+//       console.log(error)
+//     }
+//   })
+// })
+
+app.post('/delete', function (req, res) {
+  twitter.post('statuses/destroy/' + req.body.id, function (error, data) {
+    if(error) {
+      console.log(error)
+    }
+  })
 })
 
 // app.get('/feed', function (req, res) {
@@ -153,4 +184,6 @@ app.use(function (err, req, res, next) {
   }
 })
 
-app.listen(8080)
+app.listen(8080, function () {
+  console.log('Server running');
+})

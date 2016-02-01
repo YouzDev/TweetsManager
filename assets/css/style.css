@@ -17,11 +17,12 @@ nav {
 	width: 100%;
 	height: 60px;
 	background-color: #55acee;
+  position: fixed;
 }
 
 nav .content {
-  width: 13%;
-  margin: auto;
+  width: 16%;
+  margin-left: 20px;
 }
 
 nav .content p {
@@ -53,18 +54,16 @@ nav a {
 
 h1 {
   text-align: center;
-  margin-top: 30px;
+  padding-top: 100px;
 }
 
 .tweet {
   width: 500px;
-  height: 100px;
   margin: auto;
   margin-top: 50px;
   border-radius: 5px;
-  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid #ccc;
   overflow: hidden;
-  background-color: #d5e1e8;
   padding: 20px;
   background-color: #FFF;
 }
@@ -76,9 +75,158 @@ h1 {
   color: #777;
 }
 
+#link {
+  width: 200px;
+  float: right;
+  position: relative;
+}
 
+#link #plus {
+  position: fixed;
+  height: 65px;
+  width: 65px;
+  background-color: #55acee;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0), 0 2px 6px rgba(0, 0, 0, 0.28);
+  border-radius: 50%;
+  bottom: 0;
+  margin-left: 50px;
+  text-decoration: none;
+  margin-bottom: 55px;
+}
 
+#link #plus:hover {
+  background-color: #4C9CD8;
+}
 
+#link #plus span {
+  display: block;
+  line-height: 64px;
+  font-family: Roboto;
+  font-weight: 400;
+  color: #FFF;
+  text-align: center;
+  font-size: 37px;
+}
 
+.layer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: none;
+}
 
+.layer .content {
+  width: 500px;
+  height: 200px;
+  margin: auto;
+  margin-top: 100px;
+  background-color: #FFF;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
+.ask .content {
+  height: 100px;
+}
+
+.yes, .no {
+  display: inline-block;
+  height: 40px;
+  width: 80px;
+  border-radius: 3px;
+  color: #FFF;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.yes {
+  background-color: #55acee;
+}
+
+.yes:hover {
+  background-color: #4C9CD8;
+}
+
+.no {
+  cursor: pointer;
+  background-color: #e74c3c;
+}
+
+.no:hover {
+  cursor: pointer;
+  background-color: #c0392b;
+}
+
+textarea {
+  width: 100%;
+  height: 40px;
+}
+
+a i.fa {
+  color: #55acee;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.fa.fa-trash {
+  color: #e74c3c;
+  margin-top: 20px;
+}
+
+.tweet-button {
+  display: block;
+  height: 40px;
+  width: 80px;
+  background-color: #55acee;
+  border-style: none;
+  border-radius: 3px;
+}
+
+.tweet-button:hover {
+  cursor: pointer;
+  background-color: #4C9CD8;
+}
+
+.tweet-button .fa {
+  color: #FFF;
+  text-align: center;
+  font-size: 30px;
+  line-height: 39px;
+}
+
+.fa.fa-times {
+  color: #e74c3c;
+}
+
+.signin {
+  display: block;
+  width: 250px;
+  height: 40px;
+  color: #FFF;
+  background-color: #55acee;
+  border-radius: 3px;
+  text-decoration: none;
+  line-height: 40px;
+  text-align: center;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.signin:hover {
+  cursor: pointer;
+  background-color: #4C9CD8;
+}
+
+.signin .fa {
+  font-size: 20px;
+  color: #FFF;
+}

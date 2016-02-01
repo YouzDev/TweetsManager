@@ -1,22 +1,41 @@
-{{!-- <form method="GET" action="/feed">
-	<input type="text" name="search" placeholder="username" />
-	<button type="submit">Search</button>
-</form>
- --}}
-
 <nav>
 	<div class="content">		
 		<img src="{{profile_picture}}">
 		<p>@{{username}}</p>
-  </div>
-	 
-  <a href="/?action=logout">Se déconnecter</a>
+  	</div>
+ 	<a href="/logout">Se déconnecter</a>
 </nav>
 <h1>Vos tweets</h1>
+
 {{#each tweets}}
-<div class="tweet">
-  <p>{{text}}</p>
-  <span>{{created_at}}</span>
-  <a href="#" class="manage">manage</a>
-</div>
+	<div class="tweet">
+	  <p class="text" id="{{id_str}}">{{text}}</p>
+	  <span>{{created_at}}</span>
+{{!-- 	  <a href="#" class="edit"><i class="fa fa-pencil-square-o"></i></a>
+ --}}	  <a href="#" class="delete"><i class="fa fa-trash"></i></a>
+	</div>
 {{/each}}
+
+<div id="link">
+	<a id="plus" href="#">
+	  <span>+</span>
+	</a>
+</div>
+
+<div class="layer new">
+	<div class="content">
+		<a href="#" class="newTweet-cancel"><i class="fa fa-times"></i></a>
+		<form class="newTweet">
+			<textarea type="text" class="tweet-status" placeholder="What's up ?" ></textarea>
+			<button type="submit" class="tweet-button"><i class="fa fa-twitter"></i></button>
+		</form>
+	</div>
+</div>
+
+<div class="layer ask">
+	<div class="content">
+		<h2>Are you sure ?</h2>
+		<a href="#" class="yes">YES</a>
+		<a href="#" class="no">NO</a>
+	</div>
+</div>
