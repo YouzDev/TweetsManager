@@ -59,7 +59,8 @@ h1 {
 .tweet {
   width: 500px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   border-radius: 5px;
   border: 1px solid #ccc;
   overflow: hidden;

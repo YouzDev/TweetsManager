@@ -6,14 +6,15 @@
  	<a href="/logout">Logout</a>
 </nav>
 <h1 class="title">Your tweets</h1>
-
-{{#each tweets}}
-	<div class="tweet" id="{{id}}">
-	  <p class="text" id="{{id_str}}">{{text}}</p>
-	  <span class="date">{{created_at}}</span>
-	  <a href="#" class="delete"><i class="fa fa-trash"></i></a>
-	</div>
-{{/each}}
+<div id="tweets">
+	{{#each tweets}}
+		<div class="tweet" id="{{id}}">
+		  <p class="text" id="{{id_str}}">{{text}}</p>
+		  <span class="date">{{created_at}}</span>
+		  <a href="#" class="delete"><i class="fa fa-trash"></i></a>
+		</div>
+	{{/each}}
+</div>
 
 <div id="link">
 	<a id="plus" href="#">

@@ -87,9 +87,4 @@ function parseString (text) {
     textEnd = text.html().split(at)[1]
     $('#' + id).html(textStart + '<span class="colored">' + at + '</span>' + textEnd)
   }
-
-  var dateStart = $('.date').html().split('+0000')[0]
-  var dateEnd = $('.date').html().split('+0000')[1]
-
-  $('.date').html(dateStart + dateEnd)
 }
