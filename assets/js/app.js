@@ -6,7 +6,7 @@ $(document).ready(function () {
   })
 
   if ($('.tweet').length === 0) {
-    $('h1').html('You have 0 tweets')
+    $('.title').html('You have 0 tweets')
   }
 
   $('.delete').click(function (e) {
@@ -87,4 +87,9 @@ function parseString (text) {
     textEnd = text.html().split(at)[1]
     $('#' + id).html(textStart + '<span class="colored">' + at + '</span>' + textEnd)
   }
+
+  var dateStart = $('.date').html().split('+0000')[0]
+  var dateEnd = $('.date').html().split('+0000')[1]
+
+  $('.date').html(dateStart + dateEnd)
 }
