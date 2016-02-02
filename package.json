@@ -1,10 +1,11 @@
 {
-  "name": "twitter",
+  "name": "tweetsmanager",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,6 @@
     "express-session": "^1.13.0",
     "hbs": "^4.0.0",
     "md5": "^2.0.0",
-    "request-promise": "^1.0.2",
     "secret": "^1.0.2",
     "twitter": "*"
   }

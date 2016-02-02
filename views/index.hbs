@@ -3,16 +3,15 @@
 		<img src="{{profile_picture}}">
 		<p>@{{username}}</p>
   	</div>
- 	<a href="/logout">Se déconnecter</a>
+ 	<a href="/logout">Logout</a>
 </nav>
-<h1>Vos tweets</h1>
+<h1>Your tweets</h1>
 
 {{#each tweets}}
-	<div class="tweet">
+	<div class="tweet" id="{{id}}">
 	  <p class="text" id="{{id_str}}">{{text}}</p>
-	  <span>{{created_at}}</span>
-{{!-- 	  <a href="#" class="edit"><i class="fa fa-pencil-square-o"></i></a>
- --}}	  <a href="#" class="delete"><i class="fa fa-trash"></i></a>
+	  <span class="date">{{created_at}}</span>
+	  <a href="#" class="delete"><i class="fa fa-trash"></i></a>
 	</div>
 {{/each}}
 

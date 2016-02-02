@@ -3,11 +3,6 @@
   padding: 0;
 }
 
-body, html {
-  height: 100%;
-  min-height: 100%;
-}
-
 body {
   background: #f5f8fa;
   font-family: "Open Sans";
@@ -68,7 +63,7 @@ h1 {
   background-color: #FFF;
 }
 
-.tweet span {
+.tweet .date {
   display: block;
   text-align: left;
   margin-top: 10px;
@@ -91,7 +86,7 @@ h1 {
   bottom: 0;
   margin-left: 50px;
   text-decoration: none;
-  margin-bottom: 55px;
+  margin-bottom: 50px;
 }
 
 #link #plus:hover {
@@ -168,7 +163,7 @@ h2 {
 
 textarea {
   width: 100%;
-  height: 40px;
+  height: 60px;
 }
 
 a i.fa {
@@ -233,4 +228,11 @@ a i.fa {
 
 .error {
   color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.colored {
+  margin-top: 0;
+  color: #4C9CD8;
+  font-weight: 600;
 }
