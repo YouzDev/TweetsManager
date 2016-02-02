@@ -9,6 +9,8 @@ var fs = require('fs')
 var OAuth = require('oauth')
 var app = express()
 var md5 = require('md5')
+var ip = process.env.IP || 'http://localhost'
+var port = process.env.PORT || 8080
 var oauth_token = ''
 var oauth_secret = ''
 var oauth_verifier = ''
@@ -29,7 +31,7 @@ var oauth = new OAuth.OAuth(
   'J3VLchWRKjaMhvuPLFFv9od9H',
   'cLm62xSeK29xODLRVJI5BCi3Es3tXWs9UuvMuVqLaiHuS0UGLP',
   '1.0A',
-  'http://localhost:8080/oauth/authorize',
+  ip + ':' + port + '/oauth/authorize',
   'HMAC-SHA1'
 )
 
@@ -174,6 +176,6 @@ app.use(function (err, req, res, next) {
   }
 })
 
-app.listen(8080, function () {
+app.listen(port, function () {
   console.log('Server running')
 })

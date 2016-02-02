@@ -12,6 +12,7 @@ $(document).ready(function () {
   $('.delete').click(function (e) {
     e.preventDefault()
     $('.ask').show()
+    var id = $(this).parent().html().split('id="')[1].split('"')[0]
 
     $('.no').click(function (e) {
       e.preventDefault()
@@ -25,7 +26,7 @@ $(document).ready(function () {
         url: '/delete',
         type: 'POST',
         data: {
-          id: $('.delete').parent().html().split('id="')[1].split('"')[0]
+          id: id
         }
       })
       setTimeout(function () {
