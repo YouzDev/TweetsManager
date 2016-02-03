@@ -91,12 +91,16 @@ app.get('/', function (req, res) {
       } else {
         tweets = data
       }
-      return res.render('index', {
+    })
+    if (req.param.json) {
+      res.send(tweets)
+    } else {
+      res.render('index', {
         username: req.session.username,
         profile_picture: req.session.profilePic,
         tweets: tweets
       })
-    })
+    }
   } else {
     res.render('signin')
   }
@@ -121,14 +125,6 @@ app.post('/tweet', function (req, res) {
     }
   })
 })
-
-// app.post('/edit', function (req, res) {
-//   twitter.post('statuses/update', {status: req.body.status}, function (error, data) {
-//     if(error) {
-//       console.log(error)
-//     }
-//   })
-// })
 
 app.post('/delete', function (req, res) {
   twitter.post('statuses/destroy/' + req.body.id, function (error, data) {
