@@ -1,11 +1,18 @@
 /* globals $, document */
 
 $(document).ready(function () {
-  $('.text').each(function () {
+  $('.text').each(function (index, el) {
     parseString($(this))
   })
 
   $(window).scroll(function (e) {
+    $('.tweet').each(function (index, el) {
+      if (index <= $('.tweet').length / 2) {
+        $(this).show()
+      } else {
+        $(this).hide()
+      }
+    })
     $('.layer').css('top', $(window).scrollTop())
   })
 
@@ -22,7 +29,7 @@ $(document).ready(function () {
           }
         }
       })
-    }, 3000)
+    }, 5000)
   }
 
   $('.delete').click(function (e) {
@@ -104,16 +111,3 @@ function parseString (text) {
     $('#' + id).html(textStart + '<span class="colored">' + at + '</span>' + textEnd)
   }
 }
-
-// function displayNewTweets (data) {
-//   if (data[0].id_str !== $('.tweet .text').first().attr('id')) {
-//     var tweetId = data[0].id
-//     var tweetIdStr = data[0].id_str
-//     var tweetStatus = data[0].text
-//     var tweetDate = data[0].created_at
-//     $('#tweets').prepend('<div class="tweet" id="' + tweetId + '"><p class="text" id="' + tweetIdStr + '">' + tweetStatus + '</p><span class="date">' + tweetDate + '</span><a href="#" class="delete"><i class="fa fa-trash"></i></a></div>')
-//     $('.text').each(function () {
-//       parseString($(this))
-//     })
-//   }
-// }

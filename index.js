@@ -86,7 +86,7 @@ app.get('/', function (req, res) {
     twitter.get('statuses/user_timeline', function (error, data) {
       if (error) {
         res.render('error', {
-          message: error
+          message: error[0].message
         })
       } else {
         tweets = data
@@ -116,7 +116,7 @@ app.post('/tweet', function (req, res) {
   }, function (error, data) {
     if (error) {
       res.render('error', {
-        message: error
+        message: error[0].message
       })
     }
   })
@@ -127,7 +127,7 @@ app.get('/tweets', function (req, res) {
     twitter.get('statuses/user_timeline', function (error, data) {
       if (error) {
         res.render('error', {
-          message: error
+          message: error[0].message
         })
       } else {
         res.json(data)
@@ -140,7 +140,7 @@ app.post('/delete', function (req, res) {
   twitter.post('statuses/destroy/' + req.body.id, function (error, data) {
     if (error) {
       res.render('error', {
-        message: error
+        message: error[0].message
       })
     }
   })
