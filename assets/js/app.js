@@ -6,13 +6,6 @@ $(document).ready(function () {
   })
 
   $(window).scroll(function (e) {
-    $('.tweet').each(function (index, el) {
-      if (index <= $('.tweet').length / 2) {
-        $(this).show()
-      } else {
-        $(this).hide()
-      }
-    })
     $('.layer').css('top', $(window).scrollTop())
   })
 
