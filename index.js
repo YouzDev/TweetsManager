@@ -91,16 +91,12 @@ app.get('/', function (req, res) {
       } else {
         tweets = data
       }
-    })
-    if (req.param.json) {
-      res.send(tweets)
-    } else {
       res.render('index', {
         username: req.session.username,
         profile_picture: req.session.profilePic,
         tweets: tweets
       })
-    }
+    })
   } else {
     res.render('signin')
   }
@@ -124,6 +120,20 @@ app.post('/tweet', function (req, res) {
       })
     }
   })
+})
+
+app.get('/tweets', function (req, res) {
+  if (req.session.username) {
+    twitter.get('statuses/user_timeline', function (error, data) {
+      if (error) {
+        res.render('error', {
+          message: error
+        })
+      } else {
+        res.json(data)
+      }
+    })
+  }
 })
 
 app.post('/delete', function (req, res) {

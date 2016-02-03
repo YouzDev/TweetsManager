@@ -11,6 +11,18 @@ $(document).ready(function () {
 
   if ($('.tweet').length === 0) {
     $('.title').html('You have 0 tweets')
+  } else {
+    setInterval(function () {
+      $.ajax({
+        url: '/tweets',
+        type: 'GET',
+        success: function (data) {
+          if (data[0].id_str !== $('.tweet .text').first().attr('id')) {
+            window.location = '/'
+          }
+        }
+      })
+    }, 3000)
   }
 
   $('.delete').click(function (e) {
@@ -92,3 +104,16 @@ function parseString (text) {
     $('#' + id).html(textStart + '<span class="colored">' + at + '</span>' + textEnd)
   }
 }
+
+// function displayNewTweets (data) {
+//   if (data[0].id_str !== $('.tweet .text').first().attr('id')) {
+//     var tweetId = data[0].id
+//     var tweetIdStr = data[0].id_str
+//     var tweetStatus = data[0].text
+//     var tweetDate = data[0].created_at
+//     $('#tweets').prepend('<div class="tweet" id="' + tweetId + '"><p class="text" id="' + tweetIdStr + '">' + tweetStatus + '</p><span class="date">' + tweetDate + '</span><a href="#" class="delete"><i class="fa fa-trash"></i></a></div>')
+//     $('.text').each(function () {
+//       parseString($(this))
+//     })
+//   }
+// }

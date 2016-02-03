@@ -114,8 +114,8 @@ h1 {
   height: 120%;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
-/*  top: 0;
-*/  display: none;
+  top: 0;
+  display: none;
 }
 
 .layer .content {
