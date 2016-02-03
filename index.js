@@ -9,8 +9,7 @@ var fs = require('fs')
 var OAuth = require('oauth')
 var app = express()
 var md5 = require('md5')
-var ip = process.env.IP || 'http://localhost'
-var port = process.env.PORT || 8080
+var ip = process.env.IP || 'localhost'
 var access_token = '3134488589-fuGLxlWy55RxQPT2BJXqYmZvmdrPHvSOg66NVoB'
 var access_token_secret = 'WYhD964yd1nQdyak2Z0LM9mKbvleXniUVO6p3S0mmlT0D'
 var consumer_key = 'J3VLchWRKjaMhvuPLFFv9od9H'
@@ -22,7 +21,6 @@ var sess = {
   resave: true,
   saveUninitialized: true
 }
-
 var twitter = new Twitter({
   consumer_key: consumer_key,
   consumer_secret: consumer_secret,
@@ -35,7 +33,7 @@ var oauth = new OAuth.OAuth(
   consumer_key,
   consumer_secret,
   '1.0A',
-  ip + ':' + port + '/oauth/authorize',
+  'http://' + ip + ':8080/oauth/authorize',
   'HMAC-SHA1'
 )
 
@@ -160,6 +158,6 @@ app.use(function (err, req, res, next) {
   }
 })
 
-app.listen(port, function () {
+app.listen(8080, function () {
   console.log('Server running')
 })

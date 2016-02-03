@@ -5,15 +5,19 @@ $(document).ready(function () {
     parseString($(this))
   })
 
+  $(window).scroll(function (e) {
+    $('.layer').css('top', $(window).scrollTop())
+  })
+
   if ($('.tweet').length === 0) {
     $('.title').html('You have 0 tweets')
   }
 
   $('.delete').click(function (e) {
     e.preventDefault()
-    $('.ask').show()
     var id = $(this).parent().html().split('id="')[1].split('"')[0]
 
+    $('.ask').show()
     $('.no').click(function (e) {
       e.preventDefault()
       $('.layer').hide()
