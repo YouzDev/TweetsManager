@@ -10,23 +10,21 @@ var OAuth = require('oauth')
 var app = express()
 var md5 = require('md5')
 var ip = process.env.IP || 'localhost'
-var access_token = '3134488589-fuGLxlWy55RxQPT2BJXqYmZvmdrPHvSOg66NVoB'
-var access_token_secret = 'WYhD964yd1nQdyak2Z0LM9mKbvleXniUVO6p3S0mmlT0D'
+var access_token = ''
+var access_token_secret = ''
 var consumer_key = 'J3VLchWRKjaMhvuPLFFv9od9H'
 var consumer_secret = 'cLm62xSeK29xODLRVJI5BCi3Es3tXWs9UuvMuVqLaiHuS0UGLP'
+var oauth_token = ''
+var oauth_secret = ''
+var oauth_verifier = ''
 var tweets
+var twitter
 var sess = {
   secret: '12345678990',
   cookie: {},
   resave: true,
   saveUninitialized: true
 }
-var twitter = new Twitter({
-  consumer_key: consumer_key,
-  consumer_secret: consumer_secret,
-  access_token_key: access_token,
-  access_token_secret: access_token_secret
-})
 var oauth = new OAuth.OAuth(
   'https://twitter.com/oauth/request_token',
   'https://twitter.com/oauth/access_token',
@@ -63,16 +61,36 @@ app.get('/oauth/request_token', function (req, res, next) {
 
 app.get('/oauth/authorize', function (req, res) {
   if (!req.query.denied) {
-    twitter.get('account/verify_credentials', function (error, data) {
+    oauth_token = req.query.oauth_token
+    oauth_secret = req.query.oauth_secret
+    oauth_verifier = req.query.oauth_verifier
+
+    oauth.getOAuthAccessToken(oauth_token, oauth_secret, oauth_verifier, function (error, oauthAccessToken, oauthAccessTokenSecret, results) {
       if (error) {
-        console.log(error)
+        res.render('error', {message: data[0].message})
       } else {
-        req.session.userId = data.id
-        req.session.username = data.screen_name
-        req.session.name = data.name
-        req.session.profilePic = data.profile_image_url.split('_normal')[0] + '.png'
+        access_token = oauthAccessToken
+        access_token_secret = oauthAccessTokenSecret
+
+        twitter = new Twitter({
+          consumer_key: consumer_key,
+          consumer_secret: consumer_secret,
+          access_token_key: access_token,
+          access_token_secret: access_token_secret
+        })
+
+        twitter.get('account/verify_credentials', function (error, data) {
+          if (error) {
+            console.log(error)
+          } else {
+            req.session.userId = data.id
+            req.session.username = data.screen_name
+            req.session.name = data.name
+            req.session.profilePic = data.profile_image_url.split('_normal')[0] + '.png'
+          }
+          res.redirect('/')
+        })
       }
-      res.redirect('/')
     })
   } else {
     res.render('error', {
