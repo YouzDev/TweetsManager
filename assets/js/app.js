@@ -22,7 +22,7 @@ $(document).ready(function () {
           }
         }
       })
-    }, 5000)
+    }, 10000)
   }
 
   $('.delete').click(function (e) {
@@ -47,7 +47,7 @@ $(document).ready(function () {
       })
       setTimeout(function () {
         window.location = '/'
-      }, 1000)
+      }, 300)
     })
   })
 
@@ -74,7 +74,7 @@ $(document).ready(function () {
       })
       setTimeout(function () {
         window.location = '/'
-      }, 1000)
+      }, 300)
     } else {
       $('.tweet-button').before('<p class="error">Status is over 140 characters.</>')
     }
