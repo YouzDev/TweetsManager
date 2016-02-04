@@ -7,9 +7,9 @@
 `docker run --rm -ti -p 8080:8080 -e "IP=<# YOUR IP ADDRESS #>" -v "$PWD":/usr/src/app node:onbuild`
 ### In production
 #### Build
-`docker build -t TweetsManager .`
+`docker build -t tweets-manager .`
 #### Run
-`docker run --rm -ti -p 8080:8080 -e "IP=<# YOUR IP ADDRESS #>" TweetsManager`
+`docker run --rm -ti -p 8080:8080 -e "IP=<# YOUR IP ADDRESS #>" tweets-manager`
 
 ##### Note
 The `-e` option is optional, if it's not precised, `localhost` will be used.
