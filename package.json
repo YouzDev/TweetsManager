@@ -19,5 +19,9 @@
     "oauth": "^0.9.14",
     "secret": "^1.0.2",
     "twitter": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheAbstractDev/TweetsManager.git"
   }
 }
