@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build-js": "browserify assets/js/app.js > assets/js/bundle.js"
   },
   "author": "",
   "license": "ISC",
