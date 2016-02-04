@@ -4,7 +4,7 @@
 #### Install modules
 `npm install`
 #### Run
-`docker run --rm -ti -p 8080:8080 -e "IP=<# YOUR IP ADDRESS #>" -v "$PWD":/usr/src/app node:onbuild`
+`docker run --rm -ti -p 8080:8080 -e "IP=<# YOUR IP ADDRESS #>" -v "$PWD":/usr/src/app node:onbuild npm install`
 ### In production
 #### Build
 `docker build -t tweets-manager .`
