@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var express = require('express')
 var session = require('express-session')
 var hbs = require('hbs')
+var UglifyJS = require("uglify-js")
 var path = require('path')
 var _ = require('lodash')
 var fs = require('fs')
@@ -37,6 +38,12 @@ var oauth = new OAuth.OAuth(
 
 hbs.registerHelper('assets', (process.env.NODE_ENV === 'production' ? _.memoize : _.identity)(function (path) {
   var file = fs.readFileSync('assets' + path, 'utf8')
+
+  // if (process.env.NODE_ENV === 'production') {
+  //   var minifedFile = UglifyJS.minify(path)
+  //   console.log(minifiedFile.code)
+  //   fs.writeFile(path, minifedFile.code, 'utf8')
+  // }
   return '/assets' + path + '?v=' + md5(file).substring(10, 0)
 }))
 

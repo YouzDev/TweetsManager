@@ -1,8 +1,21 @@
 /* globals $, document */
+var tweetsPerPage = 5
+
 $(document).ready(function () {
   $('.text').each(function (index, el) {
     parseString($(this))
   })
+  
+  $('.tweet').each(function (index, el) {
+    if (index > tweetsPerPage) {
+      $(this).hide()
+    }
+  })
+
+  $('.more').click(function (e) {
+    e.preventDefault()
+    pagination($('.tweet'))
+  });
 
   $(window).scroll(function (e) {
     $('.layer').css('top', $(window).scrollTop())
@@ -102,4 +115,15 @@ function parseString (text) {
     textEnd = text.html().split(at)[1]
     $('#' + id).html(textStart + '<span class="colored">' + at + '</span>' + textEnd)
   }
+}
+
+function pagination (element) {
+  var numberOfTweets = element.length
+
+  element.each(function (index) {
+    if (index > tweetsPerPage) {
+      $(this).show()
+    }
+  })
+
 }
